@@ -98,7 +98,9 @@
   <ItemGroup>
     <Compile Include="MySqlConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\IMesaRepository.cs" />
     <Compile Include="Repositorios\ISalonRepository.cs" />
+    <Compile Include="Repositorios\MesaRepository.cs" />
     <Compile Include="Repositorios\SalonRepository.cs" />
   </ItemGroup>
   <ItemGroup>

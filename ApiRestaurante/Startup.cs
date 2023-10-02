@@ -34,7 +34,8 @@ namespace ApiRestaurante
             //services.AddSingleton(new MySqlConnection(Configuration.GetConnectionString("MySqlConnection")));
 
             services.AddScoped<ISalonRepository, SalonRepository>();
-            
+            services.AddScoped<IMesaRepository, MesaRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
