@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiRestaurante.Data;
+using ApiRestaurante.Data.Repositorios;
+using MySql.Data.MySqlClient;
 
 namespace ApiRestaurante
 {
@@ -26,7 +29,12 @@ namespace ApiRestaurante
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mySqlConnectionConfig = new Data.MySqlConfiguration(Configuration.GetConnectionString("MySqlConnection"));
+            services.AddSingleton(mySqlConnectionConfig);
+            //services.AddSingleton(new MySqlConnection(Configuration.GetConnectionString("MySqlConnection")));
 
+            services.AddScoped<ISalonRepository, SalonRepository>();
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
