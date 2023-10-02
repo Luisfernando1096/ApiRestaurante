@@ -24,7 +24,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<Mesa>> ObtenerMesasPorSalon(int id)
         {
             var db = dbConecction();
-            var sql = @"SELECT m.idMesa, m.numero, m.nombre, m.capacidad, m.disponible, s.idSalon, s.nombre FROM mesa m, salon s
+            var sql = @"SELECT m.idMesa, m.numero, m.nombre as nombre, m.capacidad, m.disponible, s.idSalon, s.nombre as salon FROM mesa m, salon s
                         WHERE m.idSalon=s.idSalon AND m.idSalon=@Id;";
             return db.QueryAsync<Mesa>(sql, new { Id = id });
         }
