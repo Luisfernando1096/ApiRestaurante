@@ -9,6 +9,6 @@ namespace ApiRestaurante.Data.Repositorios
 {
     public interface IProductoRepository
     {
-        Task<Producto> ObtenerProductoPorIdFamilia(int id);
+        Task<IEnumerable<Producto>> ObtenerProductoPorIdFamilia(int id);
     }
 }
