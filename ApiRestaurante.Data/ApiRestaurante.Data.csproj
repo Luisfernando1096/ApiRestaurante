@@ -103,9 +103,11 @@
     <Compile Include="Repositorios\IMesaRepository.cs" />
     <Compile Include="Repositorios\IProductoRepository.cs" />
     <Compile Include="Repositorios\ISalonRepository.cs" />
+    <Compile Include="Repositorios\IUsuarioRepository.cs" />
     <Compile Include="Repositorios\MesaRepository.cs" />
     <Compile Include="Repositorios\ProductoRepository.cs" />
     <Compile Include="Repositorios\SalonRepository.cs" />
+    <Compile Include="Repositorios\UsuarioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ApiRestaurante.Model\ApiRestaurante.Model.csproj">

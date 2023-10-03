@@ -45,6 +45,7 @@
     <Compile Include="CLS\Mesa.cs" />
     <Compile Include="CLS\Producto.cs" />
     <Compile Include="CLS\Salon.cs" />
+    <Compile Include="CLS\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
