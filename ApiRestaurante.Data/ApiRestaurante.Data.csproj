@@ -101,9 +101,11 @@
     <Compile Include="Repositorios\FamiliaRepository.cs" />
     <Compile Include="Repositorios\IFamiliaRepository.cs" />
     <Compile Include="Repositorios\IMesaRepository.cs" />
+    <Compile Include="Repositorios\IPedidoDetalleRepository.cs" />
     <Compile Include="Repositorios\IProductoRepository.cs" />
     <Compile Include="Repositorios\ISalonRepository.cs" />
     <Compile Include="Repositorios\MesaRepository.cs" />
+    <Compile Include="Repositorios\PedidoDetalleRepository.cs" />
     <Compile Include="Repositorios\ProductoRepository.cs" />
     <Compile Include="Repositorios\SalonRepository.cs" />
   </ItemGroup>
