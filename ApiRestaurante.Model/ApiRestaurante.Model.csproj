@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLS\Familia.cs" />
     <Compile Include="CLS\Mesa.cs" />
+    <Compile Include="CLS\Producto.cs" />
     <Compile Include="CLS\Salon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
