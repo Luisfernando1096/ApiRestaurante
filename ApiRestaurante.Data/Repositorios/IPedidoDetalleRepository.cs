@@ -9,6 +9,6 @@ namespace ApiRestaurante.Data.Repositorios
 {
     public interface IPedidoDetalleRepository
     {
-        Task<PedidoDetalle> ObtenerDetallePedidoPorMesa(int id);
+        Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesa(int id);
     }
 }

@@ -22,7 +22,7 @@ namespace ApiRestaurante.Data.Repositorios
             return new MySqlConnection(conectionString.ConnectionString);
         }
 
-        public Task<PedidoDetalle> ObtenerDetallePedidoPorMesa(int id)
+        public Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesa(int id)
         {
             var db = dbConecction();
             var sql = @"SELECT pd.idPedido, pd.idProducto, pd.cantidad, pd.precio, pro.nombre, pd.subTotal, pe.fecha
@@ -41,7 +41,7 @@ namespace ApiRestaurante.Data.Repositorios
                                     ORDER BY
                                         pd.horaPedido DESC; ";
 
-            return db.QueryFirstOrDefaultAsync<PedidoDetalle>(sql, new { Id = id });
+            return db.QueryAsync<PedidoDetalle>(sql, new { Id = id });
         }
     }
 }
