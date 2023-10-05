@@ -1,4 +1,5 @@
 ﻿using ApiRestaurante.Data.Repositorios;
+using ApiRestaurante.Model.CLS;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,60 @@ namespace ApiRestaurante.Controllers
         public async Task<IActionResult> ObtenerDetallePedidoPorMesa(int id)
         {
             return Ok(await pedidoDetalleRepository.ObtenerDetallePedidoPorMesa(id));
+        }
+
+        [HttpPost("insertar")]
+        public async Task<IActionResult> InsertarPedidoDetalle([FromBody] PedidoDetalle pDetalle)
+        {
+            if (pDetalle == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var crear = await pedidoDetalleRepository.Insertar(pDetalle);
+
+            return Created("created", crear);
+        }
+
+        [HttpPut("actualizarcompra")]
+        public async Task<IActionResult> ActualizarCompra([FromBody] PedidoDetalle pDetalle)
+        {
+            if (pDetalle == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoDetalleRepository.ActualizarCompra(pDetalle);
+
+            return NoContent();
+        }
+
+        [HttpPut("actualizardatos")]
+        public async Task<IActionResult> ActualizarDatos([FromBody] PedidoDetalle pDetalle)
+        {
+            if (pDetalle == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoDetalleRepository.ActualizarDatos(pDetalle);
+
+            return NoContent();
         }
     }
 }
