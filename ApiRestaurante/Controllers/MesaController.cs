@@ -1,4 +1,5 @@
 ﻿using ApiRestaurante.Data.Repositorios;
+using ApiRestaurante.Model.CLS;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,22 @@ namespace ApiRestaurante.Controllers
             return Ok(await mesaRepository.ObtenerMesasPorSalon(id));
         }
 
-        [HttpGet("ActualizarEstadoMesa/{idMesa}")]
-        public async Task<IActionResult> ActualizarEstadoMesa(int idMesa)
+        [HttpPut("ActualizarEstadoMesa")]
+        public async Task<IActionResult> ActualizarEstadoMesa([FromBody] Mesa mesa)
         {
-            return Ok(await mesaRepository.ActualizarEstadoMesa(idMesa));
+            if (mesa == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await mesaRepository.ActualizarEstadoMesa(mesa);
+
+            return NoContent();
         }
 
     }

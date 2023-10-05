@@ -25,7 +25,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesa(int id)
         {
             var db = dbConecction();
-            var sql = @"SELECT pd.idPedido, pd.idProducto, pd.cantidad, pd.precio, pro.nombre, pd.subTotal, pe.fecha
+            var sql = @"SELECT pd.idPedido, pd.idProducto, pd.cantidad, pd.precio, pro.nombre, pd.subTotal, pe.fecha, f.grupoPrinter as grupo
                                     FROM
                                         pedido pe
                                     JOIN
@@ -34,6 +34,8 @@ namespace ApiRestaurante.Data.Repositorios
                                         producto pro ON pd.idProducto = pro.idProducto
                                     JOIN
                                         mesa m ON pe.idMesa = m.idMesa
+                                    JOIN
+										familia f ON pro.idFamilia = f.idFamilia
                                     WHERE
                                         pe.idMesa = @Id
                                         AND pe.cancelado = 0

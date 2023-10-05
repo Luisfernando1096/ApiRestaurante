@@ -28,11 +28,14 @@ namespace ApiRestaurante.Data.Repositorios
                         WHERE m.idSalon=s.idSalon AND m.idSalon=@Id;";
             return db.QueryAsync<Mesa>(sql, new { Id = id });
         }
-        public Task<IEnumerable<Mesa>> ActualizarEstadoMesa(int idMesa)
+
+        public async Task<bool> ActualizarEstadoMesa(Mesa mesa)
         {
             var db = dbConecction();
-            var sql = @"UPDATE mesa SET disponible = 1 WHERE idmesa = @Id;";
-            return db.QueryAsync<Mesa>(sql, new { Id = idMesa });
+            var sql = @"UPDATE mesa SET disponible = @Disponible WHERE idmesa = @IdMesa;";
+            var result = await db.ExecuteAsync(sql, new { mesa.Disponible, mesa.IdMesa });
+
+            return result > 0;
         }
     }
 }
