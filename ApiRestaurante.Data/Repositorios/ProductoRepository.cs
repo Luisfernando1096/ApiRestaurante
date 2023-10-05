@@ -31,5 +31,13 @@ namespace ApiRestaurante.Data.Repositorios
 
             return db.QueryAsync<Producto>(sql, new { Id = id });
         }
+
+        public Task<Producto> ObtenerProductoPorId(int id)
+        {
+            var db = dbConecction();
+            var sql = @"SELECT p.idProducto, p.nombre, p.descripcion, p.precio, p.costo, p.inventariable, p.conIngrediente, p.stock, p.stockMinimo, p.activo, s.idFamilia, s.familia, s.grupoPrinter FROM producto p, familia s
+                        WHERE p.idFamilia = s.idFamilia AND idProducto = @Id;";
+            return db.QueryFirstOrDefaultAsync<Producto>(sql, new { Id = id });
+        }
     }
 }

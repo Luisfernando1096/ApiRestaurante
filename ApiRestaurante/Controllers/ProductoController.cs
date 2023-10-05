@@ -17,10 +17,17 @@ namespace ApiRestaurante.Controllers
         {
             this.productoRepository = productoRepository;
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> ObtenerProductoPorIdFamilia(int id)
         {
             return Ok(await productoRepository.ObtenerProductoPorIdFamilia(id));
+        }
+
+        [HttpGet("productoporid/{id}")]
+        public async Task<IActionResult> ObtenerSalonPorId(int id)
+        {
+            return Ok(await productoRepository.ObtenerProductoPorId(id));
         }
     }
 }
