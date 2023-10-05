@@ -23,5 +23,12 @@ namespace ApiRestaurante.Controllers
         {
             return Ok(await mesaRepository.ObtenerMesasPorSalon(id));
         }
+
+        [HttpGet("ActualizarEstadoMesa/{idMesa}")]
+        public async Task<IActionResult> ActualizarEstadoMesa(int idMesa)
+        {
+            return Ok(await mesaRepository.ActualizarEstadoMesa(idMesa));
+        }
+
     }
 }

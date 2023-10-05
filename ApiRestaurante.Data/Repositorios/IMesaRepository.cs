@@ -10,5 +10,6 @@ namespace ApiRestaurante.Data.Repositorios
     public interface IMesaRepository
     {
         Task<IEnumerable<Mesa>> ObtenerMesasPorSalon(int id);
+        Task<IEnumerable<Mesa>> ActualizarEstadoMesa(int idMesa);
     }
 }
