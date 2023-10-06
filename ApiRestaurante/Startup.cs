@@ -39,6 +39,7 @@ namespace ApiRestaurante
             services.AddScoped<IProductoRepository, ProductoRepository>();
             services.AddScoped<IPedidoDetalleRepository, PedidoDetalleRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
