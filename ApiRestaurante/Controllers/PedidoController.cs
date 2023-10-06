@@ -19,7 +19,7 @@ namespace ApiRestaurante.Controllers
             this.pedidoRepository = pedidoRepository;
         }
 
-        [HttpPost]
+        [HttpPost("insertar")]
         public async Task<IActionResult> InsertarPedido([FromBody] Pedido pedido)
         {
             if (pedido == null)
@@ -35,6 +35,24 @@ namespace ApiRestaurante.Controllers
             var crear = await pedidoRepository.InsertarPedido(pedido);
 
             return Created("created", crear);
+        }
+
+        [HttpPut("actualizartotal")]
+        public async Task<IActionResult> ActualizarTotal([FromBody] Pedido pedido)
+        {
+            if (pedido == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoRepository.ActualizarTotal(pedido);
+
+            return NoContent();
         }
     }
 }

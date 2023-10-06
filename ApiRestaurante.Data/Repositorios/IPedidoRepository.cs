@@ -10,5 +10,6 @@ namespace ApiRestaurante.Data.Repositorios
     public interface IPedidoRepository
     {
         Task<bool> InsertarPedido(Pedido pedido);
+        Task<bool> ActualizarTotal(Pedido pedido);
     }
 }
