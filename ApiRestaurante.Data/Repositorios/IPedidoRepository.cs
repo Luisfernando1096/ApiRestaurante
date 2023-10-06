@@ -11,5 +11,6 @@ namespace ApiRestaurante.Data.Repositorios
     {
         Task<bool> InsertarPedido(Pedido pedido);
         Task<bool> ActualizarTotal(Pedido pedido);
+        Task<Pedido> ObtenerUltimoPedido();
     }
 }

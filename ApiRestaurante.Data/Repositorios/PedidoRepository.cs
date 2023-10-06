@@ -39,5 +39,12 @@ namespace ApiRestaurante.Data.Repositorios
 
             return result > 0;
         }
+
+        public Task<Pedido> ObtenerUltimoPedido()
+        {
+            var db = dbConecction();
+            var sql = @"SELECT idPedido FROM pedido order by idPedido desc limit 1;";
+            return db.QueryFirstOrDefaultAsync<Pedido>(sql, new { });
+        }
     }
 }
