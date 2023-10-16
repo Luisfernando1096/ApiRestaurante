@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLS\Cliente.cs" />
+    <Compile Include="CLS\Empleado.cs" />
     <Compile Include="CLS\Familia.cs" />
     <Compile Include="CLS\Mesa.cs" />
     <Compile Include="CLS\Pedido.cs" />
