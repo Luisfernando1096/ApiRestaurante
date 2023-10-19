@@ -25,25 +25,70 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesa(int id)
         {
             var db = dbConecction();
-            var sql = @"SELECT pd.idPedido, pd.idProducto, pd.cantidad, pd.precio, pro.nombre, pd.subTotal, pe.fecha, f.grupoPrinter as grupo
-                                    FROM
-                                        pedido pe
-                                    JOIN
-                                        pedido_detalle pd ON pe.idPedido = pd.idPedido
-                                    JOIN
-                                        producto pro ON pd.idProducto = pro.idProducto
-                                    JOIN
-                                        mesa m ON pe.idMesa = m.idMesa
-                                    JOIN
-										familia f ON pro.idFamilia = f.idFamilia
-                                    WHERE
-                                        pe.idMesa = @Id
-                                        AND pe.cancelado = 0
-                                        AND m.disponible = 0
-                                    ORDER BY
-                                        pd.horaPedido DESC; ";
+            var sql = @"SELECT 
+                            pd.idPedido, 
+                            pd.idProducto, 
+                            pd.cantidad, 
+                            pd.precio, 
+                            pro.nombre, 
+                            pd.subTotal, 
+                            pe.fecha,
+                            f.grupoPrinter as grupo,
+                            pd.idDetalle
+                        FROM 
+                            pedido_detalle pd
+                        JOIN 
+                            producto pro ON pd.idProducto = pro.idProducto
+                        JOIN
+				            familia f ON pro.idFamilia = f.idFamilia
+                        JOIN 
+                            (SELECT pe.idPedido, pe.idMesa, pe.fecha
+                                FROM pedido pe
+                                JOIN mesa m ON pe.idMesa = m.idMesa
+                                WHERE pe.idMesa = @Id 
+                                AND pe.cancelado = 0 
+                                AND m.disponible = 0
+                                ORDER BY pe.fecha ASC
+                                LIMIT 1) AS pe ON pd.idPedido = pe.idPedido
+                        ORDER BY 
+                            pd.horaPedido DESC;";
 
             return db.QueryAsync<PedidoDetalle>(sql, new { Id = id });
+        }
+
+        public Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesaYPorIdPedido(int id, int idPedido)
+        {
+            var db = dbConecction();
+            var sql = @"SELECT 
+                                        pd.idPedido, 
+                                        pd.idProducto, 
+                                        pd.cantidad, 
+                                        pd.precio, 
+                                        pro.nombre, 
+                                        pd.subTotal, 
+                                        pe.fecha,
+                                        f.grupoPrinter as grupo,
+                                        pd.idDetalle
+                                    FROM 
+                                        pedido_detalle pd
+                                    JOIN 
+                                        producto pro ON pd.idProducto = pro.idProducto
+                                    JOIN
+										familia f ON pro.idFamilia = f.idFamilia
+                                    JOIN 
+                                        (SELECT pe.idPedido, pe.idMesa, pe.fecha
+                                         FROM pedido pe
+                                         JOIN mesa m ON pe.idMesa = m.idMesa
+                                         WHERE pe.idMesa = @Id
+                                         AND pe.idPedido = @IdPedido
+                                           AND pe.cancelado = 0 
+                                           AND m.disponible = 0
+                                         ORDER BY pe.fecha ASC
+                                         LIMIT 1) AS pe ON pd.idPedido = pe.idPedido
+                                    ORDER BY 
+                                        pd.horaPedido DESC;";
+
+            return db.QueryAsync<PedidoDetalle>(sql, new { Id = id, IdPedido = idPedido });
         }
 
         public async Task<bool> ActualizarCompra(PedidoDetalle pedidoDetalle)
@@ -74,5 +119,6 @@ namespace ApiRestaurante.Data.Repositorios
 
             return result > 0;
         }
+
     }
 }

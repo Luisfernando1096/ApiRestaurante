@@ -13,5 +13,6 @@ namespace ApiRestaurante.Data.Repositorios
         Task<bool> ActualizarCompra(PedidoDetalle pedidoDetalle);
         Task<bool> Insertar(PedidoDetalle pedidoDetalle);
         Task<bool> ActualizarDatos(PedidoDetalle pDetalle);
+        Task<IEnumerable<PedidoDetalle>> ObtenerDetallePedidoPorMesaYPorIdPedido(int id, int idPedido);
     }
 }
