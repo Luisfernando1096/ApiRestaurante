@@ -99,8 +99,10 @@
     <Compile Include="MySqlConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorios\ClienteRepository.cs" />
+    <Compile Include="Repositorios\EmpleadoRepository.cs" />
     <Compile Include="Repositorios\FamiliaRepository.cs" />
     <Compile Include="Repositorios\IClienteRepository.cs" />
+    <Compile Include="Repositorios\IEmpleadoRepository.cs" />
     <Compile Include="Repositorios\IFamiliaRepository.cs" />
     <Compile Include="Repositorios\IMesaRepository.cs" />
     <Compile Include="Repositorios\IPedidoDetalleRepository.cs" />
