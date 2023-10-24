@@ -182,5 +182,13 @@ namespace ApiRestaurante.Data.Repositorios
             return result > 0;
         }
 
+        public async Task<bool> EliminarPedidoDetalle(int id)
+        {
+            var db = dbConecction();
+            var sql = @"DELETE FROM pedido_detalle WHERE idDetalle = @Id;";
+            var result = await db.ExecuteAsync(sql, new { Id = id });
+
+            return result > 0;
+        }
     }
 }
