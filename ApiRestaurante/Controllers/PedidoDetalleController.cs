@@ -24,7 +24,7 @@ namespace ApiRestaurante.Controllers
             return Ok(await pedidoDetalleRepository.ObtenerDetallePedidoPorMesa(id));
         }
 
-        [HttpGet("{id}/{idPedido}")]
+        [HttpGet("detallesdepedido/{id}/{idPedido}")]
         public async Task<IActionResult> ObtenerDetallePedidoPorMesaYPorIdPedido(int id, int idPedido)
         {
             return Ok(await pedidoDetalleRepository.ObtenerDetallePedidoPorMesaYPorIdPedido(id, idPedido));

@@ -46,5 +46,27 @@ namespace ApiRestaurante.Data.Repositorios
             var sql = @"SELECT idPedido FROM pedido order by idPedido desc limit 1;";
             return db.QueryFirstOrDefaultAsync<Pedido>(sql, new { });
         }
+
+        public Task<IEnumerable<int>> ObtenerPedidosEnMesa(int idMesa)
+        {
+            var db = dbConecction();
+            var sql = @"SELECT
+                            pd.idPedido
+                        FROM
+                            pedido pe
+                        JOIN
+                            pedido_detalle pd ON pe.idPedido = pd.idPedido
+                        JOIN
+                            producto pro ON pd.idProducto = pro.idProducto
+                        JOIN
+                            mesa m ON pe.idMesa = m.idMesa
+                        WHERE
+                            pe.idMesa = @IdMesa
+                            AND pe.cancelado = 0
+                            AND m.disponible = 0
+                        GROUP BY
+                            pd.idPedido;";
+            return db.QueryAsync<int>(sql, new { IdMesa = idMesa});
+        }
     }
 }
