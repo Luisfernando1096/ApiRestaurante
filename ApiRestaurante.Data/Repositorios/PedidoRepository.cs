@@ -68,5 +68,35 @@ namespace ApiRestaurante.Data.Repositorios
                             pd.idPedido;";
             return db.QueryAsync<int>(sql, new { IdMesa = idMesa});
         }
+
+        public async Task<bool> ActualizarMesa(Pedido pedido)
+        {
+            var db = dbConecction();
+            var sql = @"UPDATE pedido SET idMesa = @IdMesa " +
+                "WHERE idPedido = @IdPedido ;";
+            var result = await db.ExecuteAsync(sql, new { pedido.IdMesa, pedido.IdPedido });
+
+            return result > 0;
+        }
+
+        public async Task<bool> ActualizarCliente(Pedido pedido)
+        {
+            var db = dbConecction();
+            var sql = @"UPDATE pedido SET idCliente = @IdCliente " +
+                "WHERE idPedido = @IdPedido ;";
+            var result = await db.ExecuteAsync(sql, new { pedido.IdCliente, pedido.IdPedido });
+
+            return result > 0;
+        }
+
+        public async Task<bool> ActualizarMesero(Pedido pedido)
+        {
+            var db = dbConecction();
+            var sql = @"UPDATE pedido SET idMesero = @IdMesero " +
+                "WHERE idPedido = @IdPedido ;";
+            var result = await db.ExecuteAsync(sql, new { pedido.IdMesero, pedido.IdPedido });
+
+            return result > 0;
+        }
     }
 }

@@ -55,6 +55,60 @@ namespace ApiRestaurante.Controllers
             return NoContent();
         }
 
+        [HttpPut("actualizarmesa")]
+        public async Task<IActionResult> ActualizarMesa([FromBody] Pedido pedido)
+        {
+            if (pedido == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoRepository.ActualizarMesa(pedido);
+
+            return NoContent();
+        }
+
+        [HttpPut("actualizarcliente")]
+        public async Task<IActionResult> ActualizarCliente([FromBody] Pedido pedido)
+        {
+            if (pedido == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoRepository.ActualizarCliente(pedido);
+
+            return NoContent();
+        }
+
+        [HttpPut("actualizarmesero")]
+        public async Task<IActionResult> ActualizarMesero([FromBody] Pedido pedido)
+        {
+            if (pedido == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await pedidoRepository.ActualizarMesero(pedido);
+
+            return NoContent();
+        }
+
         [HttpGet("obtenerultimopedido")]
         public async Task<IActionResult> ObtenerUltimoPedido()
         {
