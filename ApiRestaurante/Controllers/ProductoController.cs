@@ -1,4 +1,5 @@
 ﻿using ApiRestaurante.Data.Repositorios;
+using ApiRestaurante.Model.CLS;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,24 @@ namespace ApiRestaurante.Controllers
         public async Task<IActionResult> ObtenerSalonPorId(int id)
         {
             return Ok(await productoRepository.ObtenerProductoPorId(id));
+        }
+
+        [HttpPut("actualizarstock")]
+        public async Task<IActionResult> actualizarstock([FromBody] Producto producto)
+        {
+            if (producto == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await productoRepository.actualizarstock(producto);
+
+            return NoContent();
         }
     }
 }

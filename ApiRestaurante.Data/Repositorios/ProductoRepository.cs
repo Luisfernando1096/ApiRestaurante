@@ -39,5 +39,15 @@ namespace ApiRestaurante.Data.Repositorios
                         WHERE p.idFamilia = s.idFamilia AND idProducto = @Id;";
             return db.QueryFirstOrDefaultAsync<Producto>(sql, new { Id = id });
         }
+
+        public async Task<bool> actualizarstock(Producto producto)
+        {
+            var db = dbConecction();
+            var sql = @"UPDATE producto SET stock = @Stock " +
+                "WHERE idProducto = @IdProducto;";
+            var result = await db.ExecuteAsync(sql, new { producto.Stock, producto.IdProducto});
+
+            return result > 0;
+        }
     }
 }
