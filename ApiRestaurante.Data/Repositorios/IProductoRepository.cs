@@ -11,5 +11,6 @@ namespace ApiRestaurante.Data.Repositorios
     {
         Task<IEnumerable<Producto>> ObtenerProductoPorIdFamilia(int id);
         Task<Producto> ObtenerProductoPorId(int id);
+        Task<bool> actualizarstock(Producto producto);
     }
 }

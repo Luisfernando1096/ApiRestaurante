@@ -104,7 +104,9 @@
     <Compile Include="Repositorios\IClienteRepository.cs" />
     <Compile Include="Repositorios\IEmpleadoRepository.cs" />
     <Compile Include="Repositorios\IFamiliaRepository.cs" />
+    <Compile Include="Repositorios\IIngredienteRepository.cs" />
     <Compile Include="Repositorios\IMesaRepository.cs" />
+    <Compile Include="Repositorios\IngredienteRepository.cs" />
     <Compile Include="Repositorios\IPedidoDetalleRepository.cs" />
     <Compile Include="Repositorios\IPedidoRepository.cs" />
     <Compile Include="Repositorios\IProductoRepository.cs" />
