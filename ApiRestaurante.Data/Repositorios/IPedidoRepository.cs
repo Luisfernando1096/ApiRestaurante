@@ -15,6 +15,7 @@ namespace ApiRestaurante.Data.Repositorios
         Task<bool> ActualizarMesero(Pedido pedido);
         Task<bool> ActualizarCliente(Pedido pedido);
         Task<Pedido> ObtenerUltimoPedido();
+        Task<Pedido> ObtenerPedidoPorId(int idPedido);
         Task<IEnumerable<int>> ObtenerPedidosEnMesa(int idMesa);
     }
 }

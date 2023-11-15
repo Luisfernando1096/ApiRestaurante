@@ -98,5 +98,18 @@ namespace ApiRestaurante.Data.Repositorios
 
             return result > 0;
         }
+
+        public Task<Pedido> ObtenerPedidoPorId(int idPedido)
+        {
+            var db = dbConecction();
+            var sql = @"SELECT p.idPedido, p.idCliente, c.nombre, m.nombre as mesa, p.idCuenta, p.idMesero, e.nombres, p.fecha, p.iva, p.descuento, p.propina,
+                            p.totalPago
+                        FROM pedido p
+                        LEFT JOIN cliente c ON p.idCliente = c.idCliente
+                        LEFT JOIN empleado e ON e.idEmpleado = p.idMesero
+                        JOIN mesa m ON p.idMesa = m.idMesa
+                        WHERE p.idPedido = @IdPedido ;";
+            return db.QueryFirstOrDefaultAsync<Pedido>(sql, new { IdPedido = idPedido });
+        }
     }
 }
