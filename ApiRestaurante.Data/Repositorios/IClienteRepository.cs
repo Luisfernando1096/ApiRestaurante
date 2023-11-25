@@ -10,5 +10,6 @@ namespace ApiRestaurante.Data.Repositorios
     public interface IClienteRepository
     {
         Task<IEnumerable<Cliente>> ObtenerTodosLosClientes();
+        Task<bool> InsertarCliente(Cliente cliente);
     }
 }

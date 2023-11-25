@@ -1,4 +1,5 @@
 ﻿using ApiRestaurante.Data.Repositorios;
+using ApiRestaurante.Model.CLS;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,24 @@ namespace ApiRestaurante.Controllers
         public async Task<IActionResult> ObtenerTodosLosClientes()
         {
             return Ok(await clienteRepository.ObtenerTodosLosClientes());
+        }
+
+        [HttpPost("insertarcliente")]
+        public async Task<IActionResult> InsertarPedidoDetalle([FromBody] Cliente cliente)
+        {
+            if (cliente == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var crear = await clienteRepository.InsertarCliente(cliente);
+
+            return Created("created", crear);
         }
     }
 }

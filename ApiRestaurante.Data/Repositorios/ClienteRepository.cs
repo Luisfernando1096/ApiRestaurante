@@ -28,5 +28,14 @@ namespace ApiRestaurante.Data.Repositorios
             var sql = @"SELECT * FROM cliente;";
             return db.QueryAsync<Cliente>(sql, new { });
         }
+
+        public async Task<bool> InsertarCliente(Cliente cliente)
+        {
+            var db = dbConecction();
+            var sql = @"INSERT INTO cliente(nombre, direccion, email, telefono, NIT, regContable) VALUES(@Nombre, @Direccion, @Email, @Telefono, @NIT, @RegContable); ";
+            var result = await db.ExecuteAsync(sql, new { cliente.Nombre, cliente.Direccion, cliente.Email, cliente.Telefono, cliente.NIT, cliente.RegContable});
+
+            return result > 0;
+        }
     }
 }
