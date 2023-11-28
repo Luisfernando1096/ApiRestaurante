@@ -126,5 +126,13 @@ namespace ApiRestaurante.Controllers
         {
             return Ok(await pedidoRepository.ObtenerPedidoPorId(id));
         }
+
+        [HttpDelete("eliminarpedido/{id}")]
+        public async Task<IActionResult> EliminarPedido(int id)
+        {
+            await pedidoRepository.EliminarPedido(id);
+
+            return NoContent();
+        }
     }
 }

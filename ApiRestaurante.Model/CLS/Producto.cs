@@ -14,6 +14,7 @@ namespace ApiRestaurante.Model.CLS
         double precio;
         double costo;
         int inventariable;
+        string foto;
         int conIngrediente;
         int stock;
         int stockMinimo;
@@ -35,5 +36,6 @@ namespace ApiRestaurante.Model.CLS
         public int IdFamilia { get => idFamilia; set => idFamilia = value; }
         public string Familia { get => familia; set => familia = value; }
         public string GrupoPrinter { get => grupoPrinter; set => grupoPrinter = value; }
+        public string Foto { get => foto; set => foto = value; }
     }
 }

@@ -48,5 +48,19 @@ namespace ApiRestaurante.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("mostrarimagen/{nombreImagen}")]
+        public async Task<IActionResult> MostrarImagen(string nombreImagen)
+        {
+            var imagenBytes = await productoRepository.ObtenerImagen(nombreImagen);
+
+            if (imagenBytes == null)
+            {
+                // Manejar el caso en el que la imagen no existe
+                return NotFound();
+            }
+
+            return File(imagenBytes, "image/png"); // Ajusta "image/png" según el tipo de contenido de tu imagen
+        }
     }
 }
