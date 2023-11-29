@@ -51,7 +51,7 @@ namespace ApiRestaurante.Data.Repositorios
         }
         public Task<byte[]> ObtenerImagen(string nombreImagen)
         {
-            var rutaDeImagen = System.IO.Path.Combine(@"C:\inetpub\wwwroot\ServiExpress\Descargas", nombreImagen);
+            var rutaDeImagen = System.IO.Path.Combine(@"C:\inetpub\wwwroot\IISArchivos\Imagenes", nombreImagen);
 
             if (!System.IO.File.Exists(rutaDeImagen))
             {
