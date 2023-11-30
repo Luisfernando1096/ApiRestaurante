@@ -130,9 +130,25 @@ namespace ApiRestaurante.Controllers
         [HttpDelete("eliminarpedido/{id}")]
         public async Task<IActionResult> EliminarPedido(int id)
         {
-            await pedidoRepository.EliminarPedido(id);
+            try
+            {
+                var resultado = await pedidoRepository.EliminarPedido(id);
 
-            return NoContent();
+                if (resultado)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return NotFound(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Loguear el error o devolver un mensaje genérico
+                return StatusCode(500, "Error interno del servidor");
+            }
         }
+
     }
 }
