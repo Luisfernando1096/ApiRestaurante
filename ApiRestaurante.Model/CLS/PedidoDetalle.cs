@@ -24,6 +24,7 @@ namespace ApiRestaurante.Model.CLS
         String grupo;
         String usuario;
         String fecha;
+        String foto;
 
         public int IdDetalle { get => idDetalle; set => idDetalle = value; }
         public bool Cocinando { get => cocinando; set => cocinando = value; }
@@ -41,5 +42,6 @@ namespace ApiRestaurante.Model.CLS
         public string Grupo { get => grupo; set => grupo = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Fecha { get => fecha; set => fecha = value; }
+        public string Foto { get => foto; set => foto = value; }
     }
 }

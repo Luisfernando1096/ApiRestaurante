@@ -76,7 +76,8 @@ namespace ApiRestaurante.Data.Repositorios
                             pe.nombre as nombreMesero,
                             pe.nombres,
                             pe.mesa,
-                            pe.salon
+                            pe.salon,
+                            pro.foto
                                         
                         FROM 
                             pedido_detalle pd
@@ -121,7 +122,8 @@ namespace ApiRestaurante.Data.Repositorios
                             pe.nombre as nombreMesero,
                             pe.nombres,
                             pe.mesa,
-                            pe.salon
+                            pe.salon,
+                            pro.foto
                                         
                         FROM 
                             pedido_detalle pd
