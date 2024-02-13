@@ -11,7 +11,6 @@ namespace ApiRestaurante.Model.CLS
         int idPedido;
         int idCliente;
         int idMesa;
-        int idCuenta;
         int idMesero;
         bool cancelado;
         String fecha;
@@ -35,7 +34,6 @@ namespace ApiRestaurante.Model.CLS
         public int IdPedido { get => idPedido; set => idPedido = value; }
         public int IdCliente { get => idCliente; set => idCliente = value; }
         public int IdMesa { get => idMesa; set => idMesa = value; }
-        public int IdCuenta { get => idCuenta; set => idCuenta = value; }
         public int IdMesero { get => idMesero; set => idMesero = value; }
         public bool Cancelado { get => cancelado; set => cancelado = value; }
         public string Fecha { get => fecha; set => fecha = value; }

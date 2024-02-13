@@ -24,8 +24,8 @@ namespace ApiRestaurante.Data.Repositorios
         public async Task<int> InsertarPedido(Pedido pedido)
         {
             var db = dbConecction();
-            var sql = @"INSERT INTO pedido(idMesa, idCuenta, cancelado, fecha, listo, total, descuento, iva, propina, totalPago, saldo, nFactura, anular, efectivo, credito, btc) VALUES(@IdMesa, @IdCuenta, @Cancelado, @Fecha, @Listo, @Total, @Descuento, @Iva, @Propina, @TotalPago, @Saldo, @NFactura, @Anular, @Efectivo, @Credito, @Btc); SELECT LAST_INSERT_ID();";
-            var lastInsertedId = await db.ExecuteScalarAsync<int>(sql, new {pedido.IdMesa, pedido.IdCuenta, pedido.Cancelado, pedido.Fecha,pedido.Listo,pedido.Total, pedido.Descuento, pedido.Iva, pedido.Propina, pedido.TotalPago,pedido.Saldo,pedido.NFactura,pedido.Anular,pedido.Efectivo,pedido.Credito,pedido.Btc});
+            var sql = @"INSERT INTO pedido(idMesa, cancelado, fecha, listo, total, descuento, iva, propina, totalPago, saldo, nFactura, anular, efectivo, credito, btc) VALUES(@IdMesa, @Cancelado, @Fecha, @Listo, @Total, @Descuento, @Iva, @Propina, @TotalPago, @Saldo, @NFactura, @Anular, @Efectivo, @Credito, @Btc); SELECT LAST_INSERT_ID();";
+            var lastInsertedId = await db.ExecuteScalarAsync<int>(sql, new {pedido.IdMesa, pedido.Cancelado, pedido.Fecha,pedido.Listo,pedido.Total, pedido.Descuento, pedido.Iva, pedido.Propina, pedido.TotalPago,pedido.Saldo,pedido.NFactura,pedido.Anular,pedido.Efectivo,pedido.Credito,pedido.Btc});
 
             return lastInsertedId;
         }
@@ -102,7 +102,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<Pedido> ObtenerPedidoPorId(int idPedido)
         {
             var db = dbConecction();
-            var sql = @"SELECT p.idPedido, p.idCliente, c.nombre, m.nombre as mesa, p.idCuenta, p.idMesero, e.nombres, p.fecha, p.iva, p.descuento, p.propina,
+            var sql = @"SELECT p.idPedido, p.idCliente, c.nombre, m.nombre as mesa, p.idMesero, e.nombres, p.fecha, p.iva, p.descuento, p.propina,
                             p.totalPago
                         FROM pedido p
                         LEFT JOIN cliente c ON p.idCliente = c.idCliente
