@@ -17,6 +17,7 @@ namespace ApiRestaurante.Data.Repositorios
         Task<Pedido> ObtenerUltimoPedido();
         Task<Pedido> ObtenerPedidoPorId(int idPedido);
         Task<IEnumerable<int>> ObtenerPedidosEnMesa(int idMesa);
+        Task<IEnumerable<int>> ObtenerPedidos(int idMesa);
         Task<bool> EliminarPedido(int id);
     }
 }

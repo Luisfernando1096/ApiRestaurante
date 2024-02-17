@@ -68,6 +68,24 @@ namespace ApiRestaurante.Data.Repositorios
                             pd.idPedido;";
             return db.QueryAsync<int>(sql, new { IdMesa = idMesa});
         }
+        public Task<IEnumerable<int>> ObtenerPedidos(int idMesa)
+        {
+            var db = dbConecction();
+            var sql = @"SELECT
+                            pe.idPedido,
+                                        pe.idMesa
+                                    FROM
+                                        pedido pe
+                                    JOIN
+                                        mesa m ON pe.idMesa = m.idMesa
+                                    WHERE
+                            pe.idMesa = @IdMesa
+                            AND pe.cancelado = 0
+                            AND m.disponible = 0
+                        GROUP BY
+                            pe.idPedido;";
+            return db.QueryAsync<int>(sql, new { IdMesa = idMesa });
+        }
 
         public async Task<bool> ActualizarMesa(Pedido pedido)
         {

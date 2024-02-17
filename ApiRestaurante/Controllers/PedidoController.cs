@@ -120,7 +120,11 @@ namespace ApiRestaurante.Controllers
         {
             return Ok(await pedidoRepository.ObtenerPedidosEnMesa(id));
         }
-
+        [HttpGet("pedidos/{id}")]
+        public async Task<IActionResult> ObtenerPedidos(int id)
+        {
+            return Ok(await pedidoRepository.ObtenerPedidos(id));
+        }
         [HttpGet("pedidoporid/{id}")]
         public async Task<IActionResult> ObtenerPedidoPorId(int id)
         {
