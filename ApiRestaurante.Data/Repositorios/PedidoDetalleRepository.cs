@@ -27,6 +27,8 @@ namespace ApiRestaurante.Data.Repositorios
             var db = dbConecction();
             var sql = @"SELECT 
                             pd.idPedido, 
+                            pd.horaEntregado,
+                            pd.horaPedido,
                             pd.idProducto, 
                             pd.cantidad, 
                             pd.precio, 
@@ -64,6 +66,8 @@ namespace ApiRestaurante.Data.Repositorios
             {
                 sql = @"SELECT 
                             pd.idPedido, 
+                            pd.horaEntregado,
+                            pd.horaPedido,
                             pd.idProducto, 
                             pd.cantidad, 
                             pd.precio, 
@@ -110,6 +114,8 @@ namespace ApiRestaurante.Data.Repositorios
             {
                 sql = @"SELECT 
                             pd.idPedido, 
+                            pd.horaEntregado,
+                            pd.horaPedido,
                             pd.idProducto, 
                             pd.cantidad, 
                             pd.precio, 

@@ -49,6 +49,7 @@
     <Compile Include="CLS\Mesa.cs" />
     <Compile Include="CLS\Pedido.cs" />
     <Compile Include="CLS\PedidoDetalle.cs" />
+    <Compile Include="CLS\PedidoDetalleLog.cs" />
     <Compile Include="CLS\Producto.cs" />
     <Compile Include="CLS\Salon.cs" />
     <Compile Include="CLS\Usuario.cs" />
