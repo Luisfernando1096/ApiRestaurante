@@ -164,11 +164,23 @@ namespace ApiRestaurante.Data.Repositorios
         public async Task<bool> ActualizarCompra(PedidoDetalle pedidoDetalle)
         {
             var db = dbConecction();
-            var sql = @"UPDATE pedido_detalle pd, pedido pe SET  pd.cantidad = @Cantidad, pd.subTotal = @SubTotal 
+            if (pedidoDetalle.Precio > 0)
+            {
+                var sql = @"UPDATE pedido_detalle pd, pedido pe SET  pd.cantidad = @Cantidad, pd.subTotal = @SubTotal, pd.precio = @Precio 
                             WHERE pe.idPedido=pd.idPedido AND pe.idPedido = @IdPedido AND pd.idProducto = @IdProducto;";
-            var result = await db.ExecuteAsync(sql, new { pedidoDetalle.Cantidad, pedidoDetalle.SubTotal, pedidoDetalle.IdPedido, pedidoDetalle.IdProducto });
+                var result = await db.ExecuteAsync(sql, new { pedidoDetalle.Cantidad, pedidoDetalle.SubTotal, pedidoDetalle.Precio, pedidoDetalle.IdPedido, pedidoDetalle.IdProducto });
 
-            return result > 0;
+                return result > 0;
+            }
+            else
+            {
+                var sql = @"UPDATE pedido_detalle pd, pedido pe SET  pd.cantidad = @Cantidad, pd.subTotal = @SubTotal 
+                            WHERE pe.idPedido=pd.idPedido AND pe.idPedido = @IdPedido AND pd.idProducto = @IdProducto;";
+                var result = await db.ExecuteAsync(sql, new { pedidoDetalle.Cantidad, pedidoDetalle.SubTotal, pedidoDetalle.IdPedido, pedidoDetalle.IdProducto });
+
+                return result > 0;
+            }
+            
         }
 
         public async Task<bool> Insertar(PedidoDetalle pedidoDetalle)
