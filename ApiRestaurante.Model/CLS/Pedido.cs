@@ -30,6 +30,7 @@ namespace ApiRestaurante.Model.CLS
         String nombre;
         String nombres;
         String mesa;
+        Double exento;
 
         public int IdPedido { get => idPedido; set => idPedido = value; }
         public int IdCliente { get => idCliente; set => idCliente = value; }
@@ -53,5 +54,6 @@ namespace ApiRestaurante.Model.CLS
         public string Nombre { get => nombre; set => nombre = value; }
         public string Nombres { get => nombres; set => nombres = value; }
         public string Mesa { get => mesa; set => mesa = value; }
+        public double Exento { get => exento; set => exento = value; }
     }
 }
