@@ -26,7 +26,7 @@ namespace ApiRestaurante.Data.Repositorios
             var db = dbConecction();
             var sql = @"SELECT r.idRol, r.rol, u.idUsuario, e.idEmpleado, e.nombres as username
                         FROM rol r, usuario u, empleado e
-                        WHERE u.idRol=r.idRol AND u.pinCode=MD5(@Id) AND u.idUsuario=e.idEmpleado;";
+                        WHERE u.idRol=r.idRol AND e.activo = 1 AND u.pinCode=MD5(@Id) AND u.idUsuario=e.idEmpleado;";
             return db.QueryFirstOrDefaultAsync<Usuario>(sql, new { Id = id });
         }
     }
