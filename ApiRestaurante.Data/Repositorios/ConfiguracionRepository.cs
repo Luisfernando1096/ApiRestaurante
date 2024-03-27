@@ -23,7 +23,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<Configuracion>> ObtenerConfiguracion()
         {
             var db = dbConecction();
-            var sql = @"SELECT * FROM configuracion;";
+            var sql = @"SELECT * FROM configuracion WHERE idConfiguracion = 1;";
             return db.QueryAsync<Configuracion>(sql, new { });
         }
     }

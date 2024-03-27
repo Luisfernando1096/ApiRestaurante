@@ -25,7 +25,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<Familia>> ObtenerTodasLasFamilias()
         {
             var db = dbConecction();
-            var sql = @"SELECT idFamilia, activo, familia as nombre, grupoPrinter FROM familia;";
+            var sql = @"SELECT idFamilia, activo, familia as nombre, grupoPrinter FROM familia ORDER BY familia;";
             return db.QueryAsync<Familia>(sql, new { });
         }
     }

@@ -27,7 +27,7 @@ namespace ApiRestaurante.Data.Repositorios
             var db = dbConecction();
             var sql = @"SELECT p.idProducto, p.nombre, p.descripcion, p.precio, p.foto, p.costo, p.inventariable, p.conIngrediente, p.stock, p.stockMinimo, p.activo, s.idFamilia, s.familia, s.grupoPrinter
             FROM producto p, familia s
-            WHERE p.idFamilia = s.idFamilia AND p.idFamilia = @Id AND p.activo = 1;";
+            WHERE p.idFamilia = s.idFamilia AND p.idFamilia = @Id AND p.activo = 1 ORDER BY p.nombre;";
 
             return db.QueryAsync<Producto>(sql, new { Id = id });
         }
