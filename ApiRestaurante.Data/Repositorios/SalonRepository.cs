@@ -58,7 +58,7 @@ namespace ApiRestaurante.Data.Repositorios
         public Task<IEnumerable<Salon>> ObtenerTodosLosSalones()
         {
             var db = dbConecction();
-            var sql = @"SELECT * FROM salon;";
+            var sql = @"SELECT idSalon, nombre, fondo, nMesas FROM salon ORDER BY nombre;";
             return db.QueryAsync<Salon>(sql, new { });
         }
     }
