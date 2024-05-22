@@ -22,12 +22,17 @@ namespace ApiRestaurante.Data.Repositorios
             return new MySqlConnection(conectionString.ConnectionString);
         }
 
-        public Task<IEnumerable<Empleado>> ObtenerEmpleados()
+        public async Task<IEnumerable<Empleado>> ObtenerEmpleados()
         {
-            var db = dbConecction();
-            var sql = @"SELECT e.idEmpleado, e.nombres FROM empleado e, rol r, usuario u 
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"SELECT e.idEmpleado, e.nombres FROM empleado e, rol r, usuario u 
                       WHERE e.idEmpleado=u.idUsuario AND u.idRol=r.idRol AND r.idRol=2;";
-            return db.QueryAsync<Empleado>(sql, new { });
+                return await db.QueryAsync<Empleado>(sql, new
+                {
+                });
+            }
         }
     }
 }

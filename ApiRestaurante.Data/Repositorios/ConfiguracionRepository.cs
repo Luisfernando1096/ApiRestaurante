@@ -20,11 +20,16 @@ namespace ApiRestaurante.Data.Repositorios
         {
             return new MySqlConnection(conectionString.ConnectionString);
         }
-        public Task<IEnumerable<Configuracion>> ObtenerConfiguracion()
+        public async Task<IEnumerable<Configuracion>> ObtenerConfiguracion()
         {
-            var db = dbConecction();
-            var sql = @"SELECT * FROM configuracion WHERE idConfiguracion = 1;";
-            return db.QueryAsync<Configuracion>(sql, new { });
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"SELECT * FROM configuracion WHERE idConfiguracion = 1;";
+                return await db.QueryAsync<Configuracion>(sql, new
+                {
+                });
+            }
         }
     }
 }

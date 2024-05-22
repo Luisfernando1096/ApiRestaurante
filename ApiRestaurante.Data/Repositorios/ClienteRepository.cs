@@ -22,20 +22,27 @@ namespace ApiRestaurante.Data.Repositorios
             return new MySqlConnection(conectionString.ConnectionString);
         }
 
-        public Task<IEnumerable<Cliente>> ObtenerTodosLosClientes()
+        public async Task<IEnumerable<Cliente>> ObtenerTodosLosClientes()
         {
-            var db = dbConecction();
-            var sql = @"SELECT * FROM cliente;";
-            return db.QueryAsync<Cliente>(sql, new { });
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"SELECT * FROM cliente;";
+                return await db.QueryAsync<Cliente>(sql, new{});
+            }
         }
 
         public async Task<bool> InsertarCliente(Cliente cliente)
         {
-            var db = dbConecction();
-            var sql = @"INSERT INTO cliente(nombre, direccion, email, telefono, NIT, regContable) VALUES(@Nombre, @Direccion, @Email, @Telefono, @NIT, @RegContable); ";
-            var result = await db.ExecuteAsync(sql, new { cliente.Nombre, cliente.Direccion, cliente.Email, cliente.Telefono, cliente.NIT, cliente.RegContable});
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"INSERT INTO cliente(nombre, direccion, email, telefono, NIT, regContable) VALUES(@Nombre, @Direccion, @Email, @Telefono, @NIT, @RegContable); ";
+                var result = await db.ExecuteAsync(sql, new { cliente.Nombre, cliente.Direccion, cliente.Email, cliente.Telefono, cliente.NIT, cliente.RegContable});
 
-            return result > 0;
+                return result > 0;
+            }
+                
         }
     }
 }

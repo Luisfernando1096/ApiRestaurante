@@ -22,11 +22,14 @@ namespace ApiRestaurante.Data.Repositorios
             return new MySqlConnection(conectionString.ConnectionString);
         }
 
-        public Task<IEnumerable<Familia>> ObtenerTodasLasFamilias()
+        public async Task<IEnumerable<Familia>> ObtenerTodasLasFamilias()
         {
-            var db = dbConecction();
-            var sql = @"SELECT idFamilia, activo, familia as nombre, grupoPrinter FROM familia ORDER BY familia;";
-            return db.QueryAsync<Familia>(sql, new { });
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"SELECT idFamilia, activo, familia as nombre, grupoPrinter FROM familia ORDER BY familia;";
+                return await db.QueryAsync<Familia>(sql, new{});
+            }
         }
     }
 }

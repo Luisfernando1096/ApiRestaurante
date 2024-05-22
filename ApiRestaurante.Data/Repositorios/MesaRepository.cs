@@ -21,21 +21,31 @@ namespace ApiRestaurante.Data.Repositorios
         {
             return new MySqlConnection(conectionString.ConnectionString);
         }
-        public Task<IEnumerable<Mesa>> ObtenerMesasPorSalon(int id)
+        public async Task<IEnumerable<Mesa>> ObtenerMesasPorSalon(int id)
         {
-            var db = dbConecction();
-            var sql = @"SELECT m.idMesa, m.numero, m.nombre as nombre, m.capacidad, m.disponible, s.idSalon, s.nombre as salon FROM mesa m, salon s
-                        WHERE m.idSalon=s.idSalon AND m.idSalon=@Id;";
-            return db.QueryAsync<Mesa>(sql, new { Id = id });
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"SELECT m.idMesa, m.numero, m.nombre as nombre, m.capacidad, m.disponible, s.idSalon, s.nombre as salon FROM mesa m, salon s
+                            WHERE m.idSalon=s.idSalon AND m.idSalon=@Id;";
+                return await db.QueryAsync<Mesa>(sql, new { Id = id });
+            }
+                
         }
 
         public async Task<bool> ActualizarEstadoMesa(Mesa mesa)
         {
-            var db = dbConecction();
-            var sql = @"UPDATE mesa SET disponible = @Disponible WHERE idmesa = @IdMesa;";
-            var result = await db.ExecuteAsync(sql, new { mesa.Disponible, mesa.IdMesa });
-
-            return result > 0;
+            using (var db = dbConecction())
+            {
+                await db.OpenAsync();
+                var sql = @"UPDATE mesa SET disponible = @Disponible WHERE idmesa = @IdMesa;";
+                var result = await db.ExecuteAsync(sql, new
+                {
+                    mesa.Disponible,
+                    mesa.IdMesa
+                });
+                return result > 0;
+            }
         }
     }
 }
